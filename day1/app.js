@@ -29,24 +29,15 @@ for (items of tester) {
 const collectionItems = document.getElementsByClassName("item");
 const list = document.getElementById("list");
 const newItem = document.createElement("li");
-const number = document.getElementsByClassName("hello")[0];
 newItem.classList.add("item");
 newItem.innerText = "Item 6";
-
 list.appendChild(newItem);
 
-number.innerText = collectionItems.length;
-
 //adding new elemts using query selector
-const collectin=document.querySelectorAll('.item');
-const qlist = document.querySelector("#list");
-number = document.querySelector("hello");
-
-const newItema = document.createElement("li");
-newItema.classList.add("item");
-newItema.innerText = "Item 9";
-qlist.appendChild(newItema);
-number.innerText=collectin.length;
-
-
-//Events
+// const collectin=document.querySelectorAll('.item');
+// const qlist = document.querySelector("#list");
+// const newItema = document.createElement("li");
+// newItema.classList.add("item");
+// newItema.innerText = "Item 9";
+// qlist.appendChild(newItema);
+//-------------------------------------------------------
