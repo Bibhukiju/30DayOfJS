@@ -24,11 +24,13 @@ function getData(e) {
 }
 function get_result() {
   if (a.length > 0) {
+    result.innerHTML = '';
     getmean();
     getMedian();
     getSD();
+    get_range();
   } else {
-    alert("enter atleast one data");
+    getmean();
   }
 }
 function getmean() {
@@ -41,6 +43,11 @@ function getmean() {
   gMean = mean;
   const dataDiv = document.createElement("Div");
   dataDiv.classList.add("result");
+  if (a.length > 0) {
+    dataDiv.innerText = `Mean of the given data is ${mean}`;
+  } else {
+    alert("enter atleast one data");
+  }
   result.appendChild(dataDiv);
 }
 function getMedian() {
@@ -51,6 +58,12 @@ function getMedian() {
   n = a[n];
   const dataDiv = document.createElement("Div");
   dataDiv.classList.add("result");
+  if (a.length > 0) {
+    dataDiv.innerText = `Median of the given data is ${n}`;
+  } else {
+    dataDiv.classList.add("error");
+    dataDiv.innerText = `Enter atleast 1 data and try again`;
+  }
   result.appendChild(dataDiv);
 }
 function getSD() {
@@ -69,7 +82,19 @@ function getSD() {
   x_mean_total = Math.sqrt(x_mean_total);
   const dataDiv = document.createElement("Div");
   dataDiv.classList.add("result");
+  if (a.length > 0) {
+    dataDiv.innerText = `standard Deviation of the given data is ${x_mean_total}`;
+  } else {
+    dataDiv.classList.add("error");
+    dataDiv.innerText = `Enter atleast 1 data and try again`;
+  }
   result.appendChild(dataDiv);
-  const line = createElement(hr);
-  result.appendChild(line);
+}
+function get_range() {
+  let max = Math.max(...a);
+  let min = Math.min(...a);
+  const range = max - min;
+  const dataDiv = document.createElement("div");
+  dataDiv.innerText = `Range of the given data is ${range} `;
+  result.appendChild(dataDiv);  
 }
