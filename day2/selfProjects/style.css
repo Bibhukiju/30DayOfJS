@@ -1,6 +1,11 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+body {
+  /* background-image: linear-gradient(120deg, white, gray); */
+  min-height: 100vh;
 }
 header,
 form {
@@ -16,8 +21,13 @@ header {
 .result,
 .error {
   font-size: 1.4rem;
-  transition: all 5s ease;
+  margin: 0 auto;
+  transition: all 1s ease;
+  width: 600px;
+  text-align: center;
+  background-color: green;
 }
+
 .mean,
 .add-data,
 .reset {
@@ -30,14 +40,14 @@ header {
 }
 .datalist {
   display: flex;
+  flex-wrap: wrap;
   font-size: 2rem;
-  max-width: 100vh;
+  max-width: 100%;
 }
 .f-data {
   border: 1px solid black;
   background-color: rgb(212, 205, 205);
   margin: 1rem 0.4rem;
-  float: left;
   padding: 1.2rem;
   border-radius: 5px;
 }
@@ -52,4 +62,19 @@ form input {
   font-size: 2rem;
   border: 1px dashed gray;
   background: white;
+}
+.parenList {
+  display: flex;
+  justify-content: space-evenly;
+  border: 1px solid red;
+  margin: 15px;
+}
+.ist {
+  font-size: 1.5rem;
+  text-align: center;
+  width: 400px;
+}
+.data-table {
+  border: solid 1px black;
+  margin: 1rem;
 }

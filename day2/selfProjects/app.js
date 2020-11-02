@@ -4,6 +4,7 @@ const addData = document.querySelector(".add-data");
 const calc = document.querySelector(".mean");
 const result = document.querySelector(".result");
 const dataList = document.querySelector(".datalist");
+const dataTable = document.querySelector(".data-table");
 let a = [];
 let gMean = 0;
 
@@ -15,7 +16,9 @@ calc.addEventListener("click", get_result);
 function getData(e) {
   e.preventDefault();
   a.push(parseInt(data.value));
-  console.log(a);
+  a = Array.from(a);
+  a = a.sort((c, d) => c - d);
+  console.log(typeof a);
   const datum = document.createElement("div");
   datum.classList.add("f-data");
   datum.innerText = data.value;
@@ -24,11 +27,13 @@ function getData(e) {
 }
 function get_result() {
   if (a.length > 0) {
-    result.innerHTML = '';
+    result.innerHTML = "";
+    dataTable.innerHTML = "";
     getmean();
     getMedian();
     getSD();
     get_range();
+    createTable();
   } else {
     getmean();
   }
@@ -51,7 +56,7 @@ function getmean() {
   result.appendChild(dataDiv);
 }
 function getMedian() {
-  a = a.sort();
+  console.log(a);
   console.log(a);
   let n = a.length / 2 - 1;
   n = Math.round(n);
@@ -95,6 +100,55 @@ function get_range() {
   let min = Math.min(...a);
   const range = max - min;
   const dataDiv = document.createElement("div");
+  dataDiv.classList.add("result");
   dataDiv.innerText = `Range of the given data is ${range} `;
-  result.appendChild(dataDiv);  
+  result.appendChild(dataDiv);
+}
+function createTable() {
+  const dataDiv = document.createElement("div");
+  const item1 = document.createElement("div");
+  item1.innerText = "x";
+  item1.classList.add("ist");
+  dataDiv.appendChild(item1);
+  const item2 = document.createElement("div");
+  item2.innerText = "x̄";
+  item2.classList.add("ist");
+  dataDiv.appendChild(item2);
+  dataDiv.classList.add("parenList");
+  const item3 = document.createElement("div");
+  item3.innerText = "x-mean";
+  item3.classList.add("ist");
+  dataDiv.appendChild(item3);
+  dataDiv.classList.add("parenList");
+  dataTable.appendChild(dataDiv);
+  for (var i in a) {
+    const dataDiv = document.createElement("div");
+    const item1 = document.createElement("div");
+    item1.innerText = a[i];
+    item1.classList.add("ist");
+    dataDiv.appendChild(item1);
+    const item2 = document.createElement("div");
+    item2.innerText = gMean;
+    item2.classList.add("ist");
+    dataDiv.appendChild(item2);
+    const item3 = document.createElement("div");
+    item3.innerText = a[i]-gMean;
+    item3.classList.add("ist");
+    dataDiv.appendChild(item3);
+    dataDiv.classList.add("parenList");
+    dataTable.appendChild(dataDiv);
+  }
+  // dataTable.appendChild(ydiv);
+  // const item1 = document.createElement("div");
+  // item1.innerText = "hello";
+  // item1.classList.add("ist");
+  // const item2 = document.createElement("div");
+  // item1.innerText = "hello";
+  // item2.classList.add("ist");
+  // const item3 = document.createElement("div");
+  // item1.innerText = "hello";
+  // item3.classList.add("ist");
+  // plist.appendChild(item1);
+  // plist.appendChild(item2);
+  // plist.appendChild(item3);
 }
