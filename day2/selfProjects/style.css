@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.result,
+.error {
+  font-size: 1.4rem;
+  transition: all 5s ease;
+}
+.mean {
+  border: 1px solid green;
+  padding: 1rem 1.3rem;
+  margin-top: 1rem;
+}
+.error {
+  color: red;
+}
+.datalist {
+  display: flex;
+}
+.f-data {
+  background: coral;
+  margin: 1rem .4rem;
+  padding: 1.2rem;
+}

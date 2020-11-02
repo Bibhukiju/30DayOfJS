@@ -59,7 +59,6 @@ function deleteCheck(event) {
 function filterTodo(e) {
   console.log(e.target.value);
   const todos = todoList.childNodes;
-
   todos.forEach(function (todo) {
     switch (e.target.value) {
       case "all":
@@ -97,7 +96,6 @@ function saveLocalTodo(todo) {
   localStorage.setItem("todos", JSON.stringify(todos));
 }
 function getTodo() {
-  console.log("hello");
   let todos;
   if (localStorage.getItem("todos") === null) {
     todos = [];
@@ -111,6 +109,7 @@ function getTodo() {
     newTodo.innerHTML = todo;
     newTodo.classList.add("todo-item");
     todoDiv.appendChild(newTodo);
+    
     //check mark button
     const iscompleted = document.createElement("button");
     iscompleted.innerHTML = '<i class="fas fa-check"></i>';
