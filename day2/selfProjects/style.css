@@ -21,19 +21,15 @@ header {
 .result,
 .error {
   font-size: 1.4rem;
-  margin: 0 auto;
   transition: all 1s ease;
-  width: 600px;
-  text-align: center;
-  background-color: green;
+  line-height: 2rem;
 }
-
 .mean,
 .add-data,
 .reset {
-  border: 1px solid green;
   padding: 1rem 1.3rem;
   margin: 1rem;
+  border-radius: 10px;
 }
 .error {
   color: red;
@@ -66,15 +62,20 @@ form input {
 .parenList {
   display: flex;
   justify-content: space-evenly;
-  border: 1px solid red;
-  margin: 15px;
+  background-color: rgb(199, 199, 199);
+  margin: 5px;
+  padding: 10px 5px;
 }
 .ist {
   font-size: 1.5rem;
   text-align: center;
-  width: 400px;
+  width: 100px;
 }
 .data-table {
-  border: solid 1px black;
-  margin: 1rem;
+  /* border: solid 1px black; */
+  width: 700px;
+}
+.testi {
+  display: flex;
+  flex-wrap: wrap;
 }

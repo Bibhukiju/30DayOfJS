@@ -109,7 +109,7 @@ function getTodo() {
     newTodo.innerHTML = todo;
     newTodo.classList.add("todo-item");
     todoDiv.appendChild(newTodo);
-    
+
     //check mark button
     const iscompleted = document.createElement("button");
     iscompleted.innerHTML = '<i class="fas fa-check"></i>';

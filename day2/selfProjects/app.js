@@ -14,9 +14,12 @@ calc.addEventListener("click", get_result);
 
 //functions
 function getData(e) {
+  const arr = [1,2,4,10,3,7,9,8];
+  console.log(typeof arr);
+  arr.sort();
+  console.log(arr);
   e.preventDefault();
   a.push(parseInt(data.value));
-  a = Array.from(a);
   a = a.sort((c, d) => c - d);
   console.log(typeof a);
   const datum = document.createElement("div");
@@ -29,6 +32,7 @@ function get_result() {
   if (a.length > 0) {
     result.innerHTML = "";
     dataTable.innerHTML = "";
+    dataList.innerHTML = "";
     getmean();
     getMedian();
     getSD();
@@ -63,12 +67,7 @@ function getMedian() {
   n = a[n];
   const dataDiv = document.createElement("Div");
   dataDiv.classList.add("result");
-  if (a.length > 0) {
-    dataDiv.innerText = `Median of the given data is ${n}`;
-  } else {
-    dataDiv.classList.add("error");
-    dataDiv.innerText = `Enter atleast 1 data and try again`;
-  }
+  dataDiv.innerText = `Median of the given data is ${n}`;
   result.appendChild(dataDiv);
 }
 function getSD() {
@@ -87,12 +86,9 @@ function getSD() {
   x_mean_total = Math.sqrt(x_mean_total);
   const dataDiv = document.createElement("Div");
   dataDiv.classList.add("result");
-  if (a.length > 0) {
-    dataDiv.innerText = `standard Deviation of the given data is ${x_mean_total}`;
-  } else {
-    dataDiv.classList.add("error");
-    dataDiv.innerText = `Enter atleast 1 data and try again`;
-  }
+  dataDiv.innerText = `Standard Deviation of the given data is ${x_mean_total.toPrecision(
+    3
+  )}`;
   result.appendChild(dataDiv);
 }
 function get_range() {
@@ -116,11 +112,16 @@ function createTable() {
   dataDiv.appendChild(item2);
   dataDiv.classList.add("parenList");
   const item3 = document.createElement("div");
-  item3.innerText = "x-mean";
+  item3.innerText = "x-x̄";
   item3.classList.add("ist");
   dataDiv.appendChild(item3);
   dataDiv.classList.add("parenList");
   dataTable.appendChild(dataDiv);
+  const item4 = document.createElement("div");
+  item4.innerText = "(x-x̄)^2";
+  item4.classList.add("ist");
+  dataDiv.appendChild(item4);
+  dataDiv.classList.add("parenList");
   for (var i in a) {
     const dataDiv = document.createElement("div");
     const item1 = document.createElement("div");
@@ -128,27 +129,37 @@ function createTable() {
     item1.classList.add("ist");
     dataDiv.appendChild(item1);
     const item2 = document.createElement("div");
-    item2.innerText = gMean;
+    item2.innerText = gMean.toPrecision(3);
     item2.classList.add("ist");
     dataDiv.appendChild(item2);
     const item3 = document.createElement("div");
-    item3.innerText = a[i]-gMean;
+    item3.innerText = (a[i] - gMean).toPrecision(3);
     item3.classList.add("ist");
     dataDiv.appendChild(item3);
+    const item4 = document.createElement("div");
+    item4.innerText = Math.pow(a[i] - gMean, 2).toPrecision(3);
+    item4.classList.add("ist");
+    dataDiv.appendChild(item4);
     dataDiv.classList.add("parenList");
     dataTable.appendChild(dataDiv);
   }
-  // dataTable.appendChild(ydiv);
-  // const item1 = document.createElement("div");
-  // item1.innerText = "hello";
-  // item1.classList.add("ist");
-  // const item2 = document.createElement("div");
-  // item1.innerText = "hello";
-  // item2.classList.add("ist");
-  // const item3 = document.createElement("div");
-  // item1.innerText = "hello";
-  // item3.classList.add("ist");
-  // plist.appendChild(item1);
-  // plist.appendChild(item2);
-  // plist.appendChild(item3);
+  const ataDiv = document.createElement("div");
+  const item01 = document.createElement("div");
+  item01.innerText = `N=${a.length}`;
+  item01.classList.add("ist");
+  ataDiv.appendChild(item01);
+  const item02 = document.createElement("div");
+  item02.innerText = `x̄=${gMean.toPrecision(3)}`;
+  item02.classList.add("ist");
+  ataDiv.appendChild(item02);
+  const item03 = document.createElement("div");
+  item03.innerText = `x-x̄=0`;
+  item03.classList.add("ist");
+  ataDiv.appendChild(item03);
+  const item04 = document.createElement("div");
+  item04.innerText = Math.pow(a[i] - gMean, 2).toPrecision(3);
+  item04.classList.add("ist");
+  ataDiv.appendChild(item04);
+  ataDiv.classList.add("parenList");
+  dataTable.appendChild(ataDiv);
 }
