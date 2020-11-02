@@ -2,24 +2,54 @@
   margin: 0;
   padding: 0;
 }
+header,
+form {
+  min-height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header {
+  font-size: 4rem;
+  color: coral;
+}
 .result,
 .error {
   font-size: 1.4rem;
   transition: all 5s ease;
 }
-.mean {
+.mean,
+.add-data,
+.reset {
   border: 1px solid green;
   padding: 1rem 1.3rem;
-  margin-top: 1rem;
+  margin: 1rem;
 }
 .error {
   color: red;
 }
 .datalist {
   display: flex;
+  font-size: 2rem;
+  max-width: 100vh;
 }
 .f-data {
-  background: coral;
-  margin: 1rem .4rem;
+  border: 1px solid black;
+  background-color: rgb(212, 205, 205);
+  margin: 1rem 0.4rem;
+  float: left;
   padding: 1.2rem;
+  border-radius: 5px;
+}
+.add-data {
+  background-color: rgb(103, 248, 103);
+}
+.reset {
+  background-color: red;
+}
+form input {
+  padding: 0.5rem;
+  font-size: 2rem;
+  border: 1px dashed gray;
+  background: white;
 }
