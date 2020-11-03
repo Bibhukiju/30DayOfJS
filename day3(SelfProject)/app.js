@@ -189,9 +189,9 @@ function drawAxis() {
   ctx.lineTo(blocks(5), blocks(40));
   ctx.lineTo(blocks(80), blocks(40));
   ctx.moveTo(blocks(5), blocks(40));
-  for (i = 0; i <= 10; i++) {
+  for (i = 0; i <= 5; i++) {
     ctx.strokeText(data, blocks(2), blocks(yPlot));
-    yPlot -= 5;
+    yPlot -= 15;
     gMean = Math.ceil(gMean);
     data += gMean;
   }
@@ -200,12 +200,13 @@ function drawAxis() {
 
 function drawLine() {
   ctx.beginPath();
+  ctx.strokeStyle = "green";
   ctx.moveTo(blocks(5), blocks(40));
   let xPlot = 10;
   for(let i in unsorta ){
-    let popninBlks = unsorta[i] / gMean;
-    ctx.lineTo(blocks(xPlot), blocks(40) - popninBlks);
-    xPlot += 5;
+    
+    ctx.lineTo(blocks(xPlot), blocks(40) - unsorta[i]);
+    xPlot += 10;
   };
   ctx.stroke();
 }
