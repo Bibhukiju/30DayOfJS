@@ -5,7 +5,9 @@ const calc = document.querySelector(".mean");
 const result = document.querySelector(".result");
 const dataList = document.querySelector(".datalist");
 const dataTable = document.querySelector(".data-table");
-let canvas = document.querySelector(".canva");
+const canvas = document.querySelector(".canva");
+
+//global vriable
 let a = [];
 let unsorta = [];
 let gMean = 0;
@@ -41,6 +43,7 @@ function get_result() {
     getSD();
     get_range();
     createTable();
+    plotxy();
   } else {
     getmean();
   }
@@ -57,7 +60,7 @@ function getmean() {
   const dataDiv = document.createElement("Div");
   dataDiv.classList.add("result");
   if (a.length > 0) {
-    dataDiv.innerText = `Mean of the given data is ${mean}`;
+    dataDiv.innerText = `Mean of the given data is ${mean.toPrecision(3)}`;
   } else {
     alert("enter atleast one data");
   }
@@ -174,39 +177,91 @@ function draw_canvas() {
   canvas.width = 1000;
   canvas.height = 500;
   drawAxis();
-  drawLine();
+  plotxy();
 }
 function blocks(count) {
   return count * 10;
 }
 
 function drawAxis() {
-  let yPlot = 40;
-  let data = 0;
   ctx.beginPath();
   ctx.strokeStyle = "black";
-  ctx.moveTo(blocks(5), blocks(5));
-  ctx.lineTo(blocks(5), blocks(40));
-  ctx.lineTo(blocks(80), blocks(40));
-  ctx.moveTo(blocks(5), blocks(40));
-  for (i = 0; i <= 5; i++) {
-    ctx.strokeText(data, blocks(2), blocks(yPlot));
-    yPlot -= 15;
-    gMean = Math.ceil(gMean);
-    data += gMean;
-  }
+  ctx.moveTo(blocks(2), blocks(2));
+  ctx.lineTo(blocks(2), blocks(49));
+  ctx.lineTo(blocks(90), blocks(49));
   ctx.stroke();
 }
 
-function drawLine() {
+// function drawLine() {
+//   ctx.beginPath();
+//   ctx.strokeStyle = "black";
+//   ctx.moveTo(blocks(5), blocks(40));
+//   let xPlot = 10;
+//   for (let i in unsorta) {
+//     ctx.strokeStyle = "black";
+//     ctx.lineTo(blocks(xPlot), blocks(40) - blocks(unsorta[i] / 2));
+//     ctx.font = "20px Verdana";
+//     ctx.strokeText(
+//       unsorta[i],
+//       blocks(xPlot),
+//       blocks(40) - blocks(unsorta[i] / 2)
+//     );
+//     xPlot += 10;
+//   }
+//   ctx.stroke();
+//   drawMean_Line();
+// }
+
+function drawMean_Line() {
   ctx.beginPath();
+  ctx.moveTo(0, blocks(40) - blocks(gMean / 2));
+  console.log(blocks(40) - blocks(gMean / 2));
+  ctx.lineTo(canvas.width, blocks(40) - blocks(gMean / 2));
   ctx.strokeStyle = "green";
-  ctx.moveTo(blocks(5), blocks(40));
-  let xPlot = 10;
-  for(let i in unsorta ){
-    
-    ctx.lineTo(blocks(xPlot), blocks(40) - unsorta[i]);
-    xPlot += 10;
-  };
   ctx.stroke();
+}
+// function plotXY() {
+//   ctx.beginPath();
+//   let yMaxLimit = 40;
+//   let yOrign = 490;
+//   let yIncr = yMaxLimit - yOrign / Math.max(...a);
+//   console.log(Math.max(...a));
+//   console.log(yIncr);
+//   let xMaxLimit = blocks(96);
+//   let xOrigin = 20;
+//   let xIncr = (xMaxLimit - xOrigin) / a.length;
+//   ctx.moveTo(xOrigin, yOrign);
+//   for (let i in unsorta) {
+//     xOrigin += xIncr;
+//     ctx.lineTo(xOrigin, yOrign - i * yIncr);
+//     console.log(`${xOrigin}    ${yOrign - i * yIncr}`);
+//     ctx.stroke();
+//   }
+//   ctx.stroke();
+// }
+
+function plotxy() {
+  // let arr = [50, 70];
+
+  let yMaxLimit = 100;
+  let xMaxLimit = 960;
+  let yOrigin = 490;
+  let xOrigin = 30;
+
+  let diffx = xMaxLimit - xOrigin;
+  let diffy = yOrigin - yMaxLimit;
+
+  let yIncr = diffx / Math.max(...unsorta);
+  let xIncr = diffy / unsorta.length;
+  ctx.moveTo(xOrigin, yOrigin);
+  ctx.lineTo(xOrigin + xIncr, yOrigin - unsorta[0]* yIncr);
+  ctx.strokeStyle="green";
+  ctx.stroke();
+
+  // for (let value in unsorta) {
+  //   let yPlot = yOrigin - value * yIncr;
+  //   ctx.lineTo(xOrigin + xIncr, yPlot);
+  //   ctx.strokeStyle = "green";
+  //   ctx.stroke();
+  // }
 }

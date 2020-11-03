@@ -78,9 +78,8 @@ form input {
 .testi {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-evenly;
 }
-.canva
-{
+.canva {
   border: 1px solid black;
-  margin: 0 auto;
 }
