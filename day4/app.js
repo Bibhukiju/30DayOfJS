@@ -18,10 +18,6 @@ calc.addEventListener("click", get_result);
 
 //functions
 function getData(e) {
-  const arr = [1, 2, 4, 10, 3, 7, 9, 8];
-  console.log(typeof arr);
-  arr.sort();
-  console.log(arr);
   e.preventDefault();
   a.push(parseInt(data.value));
   unsorta.push(parseInt(data.value));
@@ -43,7 +39,7 @@ function get_result() {
     getSD();
     get_range();
     createTable();
-    plotxy();
+    drawPoints();
   } else {
     getmean();
   }
@@ -177,7 +173,7 @@ function draw_canvas() {
   canvas.width = 1000;
   canvas.height = 500;
   drawAxis();
-  plotxy();
+  // plotxy();
 }
 function blocks(count) {
   return count * 10;
@@ -186,8 +182,8 @@ function blocks(count) {
 function drawAxis() {
   ctx.beginPath();
   ctx.strokeStyle = "black";
-  ctx.moveTo(blocks(3), blocks(3));
-  ctx.lineTo(blocks(3), blocks(49));
+  ctx.moveTo(blocks(2), blocks(2));
+  ctx.lineTo(blocks(2), blocks(49));
   ctx.lineTo(blocks(90), blocks(49));
   ctx.stroke();
 }
@@ -240,29 +236,73 @@ function drawMean_Line() {
 //   ctx.stroke();
 // }
 
-function plotxy() {
-  // let arr = [50, 70];
+canvas.width = 1000;
+canvas.height = 500;
 
-  let yMaxLimit = 100;
-  let xMaxLimit = 960;
-  let yOrigin = 490;
-  let xOrigin = 30;
+// global variables
+let xOrigin = 20;
+let yOrigin = 490;
 
-  let diffx = xMaxLimit - xOrigin;
-  let diffy = yOrigin - yMaxLimit;
+let yAxisLimit = 20;
+let xAxisLimit = 980;
 
-  let yIncr = diffx / Math.max(...unsorta);
-  let xIncr = diffy / unsorta.length;
-  ctx.moveTo(xOrigin, yOrigin);
-  // ctx.lineTo(xOrigin + xIncr, yOrigin - unsorta[0] * yIncr);
-  ctx.lineTo(50, 70);
-  // ctx.strokeStyle = "green";
-  ctx.stroke();
+let yAxisDisplayLimit = yAxisLimit + 10;
+let xAxisDisplayLimit = xAxisLimit - 30;
 
-  // for (let value in unsorta) {
-  //   let yPlot = yOrigin - value * yIncr;
-  //   ctx.lineTo(xOrigin + xIncr, yPlot);
-  //   ctx.strokeStyle = "green";
-  //   ctx.stroke();
-  // }
+let xIncr, yIncr;
+
+arr = unsorta;
+
+var c = canvas.getContext("2d");
+
+c.beginPath();
+// drawing the y-axis points
+c.moveTo(xOrigin, yOrigin);
+c.lineTo(xOrigin, yAxisLimit);
+
+// drawing the x-axis points
+c.moveTo(xOrigin, yOrigin);
+c.lineTo(xAxisLimit, yOrigin);
+
+c.stroke();
+
+function drawNumbersOnAxis() {
+  // c.font("3px Arial");
+  // ctx.fillText("ram",xDraw+8,yDraw);
+  let xDraw = xOrigin,
+    yDraw = yOrigin;
+  yIncr = (yOrigin - yAxisDisplayLimit) / Math.max(...arr);
+  while (yDraw >= yAxisDisplayLimit) {
+    c.beginPath();
+    c.moveTo(xDraw, yDraw);
+    c.lineTo(xDraw + 5, yDraw);
+
+    c.stroke();
+    yDraw = yDraw - yIncr;
+  }
 }
+
+function drawPoints() {
+  yIncr = (yOrigin - yAxisDisplayLimit) / Math.max(...arr);
+  xIncr = (xAxisDisplayLimit - xOrigin) / arr.length;
+
+  c.beginPath();
+  c.moveTo(xOrigin, yOrigin);
+
+  //c.font("20px Arial");
+
+  let xPlot = xOrigin,
+    yPlot;
+  for (let value of arr) {
+    xPlot += xIncr;
+    yPlot = yOrigin - value * yIncr;
+    console.log(`xPlot: ${xPlot} yPlot: ${yPlot}`);
+    c.lineTo(xPlot, yPlot);
+    c.font = "30px Comic Sans MS";
+    c.strokeText(value, xPlot - 10, yPlot);
+    c.strokeStyle="green";
+    c.stroke(); //c.fillText(xPlot+10,yPlot,value);
+  }
+}
+
+//drawNumbersOnAxis();
