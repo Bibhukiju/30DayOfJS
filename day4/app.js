@@ -160,7 +160,7 @@ function createTable() {
   item03.classList.add("ist");
   ataDiv.appendChild(item03);
   const item04 = document.createElement("div");
-  item04.innerText = Math.pow(a[i] - gMean, 2).toPrecision(3);
+  item04.innerText = `∑(x−x¯)`;
   item04.classList.add("ist");
   ataDiv.appendChild(item04);
   ataDiv.classList.add("parenList");
@@ -236,60 +236,42 @@ function drawMean_Line() {
 //   ctx.stroke();
 // }
 
-canvas.width = 1000;
-canvas.height = 500;
-
-// global variables
-let xOrigin = 20;
-let yOrigin = 490;
-
-let yAxisLimit = 20;
-let xAxisLimit = 980;
-
-let yAxisDisplayLimit = yAxisLimit + 10;
-let xAxisDisplayLimit = xAxisLimit - 30;
-
-let xIncr, yIncr;
-
-arr = unsorta;
-
-var c = canvas.getContext("2d");
-
-c.beginPath();
-// drawing the y-axis points
-c.moveTo(xOrigin, yOrigin);
-c.lineTo(xOrigin, yAxisLimit);
-
-// drawing the x-axis points
-c.moveTo(xOrigin, yOrigin);
-c.lineTo(xAxisLimit, yOrigin);
-
-c.stroke();
-
-function drawNumbersOnAxis() {
-  // c.font("3px Arial");
-  // ctx.fillText("ram",xDraw+8,yDraw);
-  let xDraw = xOrigin,
-    yDraw = yOrigin;
-  yIncr = (yOrigin - yAxisDisplayLimit) / Math.max(...arr);
-  while (yDraw >= yAxisDisplayLimit) {
-    c.beginPath();
-    c.moveTo(xDraw, yDraw);
-    c.lineTo(xDraw + 5, yDraw);
-
-    c.stroke();
-    yDraw = yDraw - yIncr;
-  }
-}
-
 function drawPoints() {
+  canvas.width = 1000;
+  canvas.height = 500;
+
+  // global variables
+  let xOrigin = 20;
+  let yOrigin = 490;
+
+  let yAxisLimit = 20;
+  let xAxisLimit = 980;
+
+  let yAxisDisplayLimit = yAxisLimit + 10;
+  let xAxisDisplayLimit = xAxisLimit - 30;
+
+  let xIncr, yIncr;
+
+  arr = unsorta;
+
+  var c = canvas.getContext("2d");
+
+  c.beginPath();
+  // drawing the y-axis points
+  c.moveTo(xOrigin, yOrigin);
+  c.lineTo(xOrigin, yAxisLimit);
+
+  // drawing the x-axis points
+  c.moveTo(xOrigin, yOrigin);
+  c.lineTo(xAxisLimit, yOrigin);
+
+  c.stroke();
+
   yIncr = (yOrigin - yAxisDisplayLimit) / Math.max(...arr);
   xIncr = (xAxisDisplayLimit - xOrigin) / arr.length;
 
   c.beginPath();
   c.moveTo(xOrigin, yOrigin);
-
-  //c.font("20px Arial");
 
   let xPlot = xOrigin,
     yPlot;
@@ -298,11 +280,18 @@ function drawPoints() {
     yPlot = yOrigin - value * yIncr;
     console.log(`xPlot: ${xPlot} yPlot: ${yPlot}`);
     c.lineTo(xPlot, yPlot);
-    c.font = "30px Comic Sans MS";
+    c.font = "1rem Comic Sans MS";
     c.strokeText(value, xPlot - 10, yPlot);
-    c.strokeStyle="green";
+    c.strokeStyle = "black";
     c.stroke(); //c.fillText(xPlot+10,yPlot,value);
   }
+  c.moveTo(20, yOrigin - gMean * yIncr);
+  console.log(yOrigin - gMean);
+  c.lineTo(xAxisLimit, yOrigin - gMean * yIncr);
+  c.strokeStyle = "green";
+  c.strokeText(`Mean(${gMean})`, xAxisLimit / 2, yOrigin - gMean * yIncr);
+  c.stroke();
+  c.strokeStyle = "black";
 }
 
 //drawNumbersOnAxis();
