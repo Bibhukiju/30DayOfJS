@@ -82,4 +82,5 @@ form input {
 }
 .canva {
   border: 1px solid black;
+  transition: all 10s ease;
 }

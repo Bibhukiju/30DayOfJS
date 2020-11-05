@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.home {
+  display: flex;
+  grid-template-columns: repeat(1fr);
+}
+.menu-bar {
+  float: left;
+  background-color: #EBEBEB;
+  height: 100vh;
+  width: 30vh;
+  padding-left: 2rem;
+  padding-top: 4rem;
+  color: teal;
+}
+.menu-bar li {
+  list-style: none;
+  font-size: 2rem;
+  line-height: 4rem;
+}
+.dashboard {
+  background-color: pink;
+  width: 161vh;
+  float: left;
+  height: 100vh;
+}
+.dash-gap
+{
+    margin-left: 10px;
+}

@@ -293,5 +293,3 @@ function drawPoints() {
   c.stroke();
   c.strokeStyle = "black";
 }
-
-//drawNumbersOnAxis();
