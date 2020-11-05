@@ -1,6 +1,6 @@
 //selectors
 const dataSumary = document.querySelector(".data-summary");
-const lowerSumPart = document.querySelector(".lower-summary");
+const recentransDiv = document.querySelector(".rcntTrans");
 
 //eventListeners
 
@@ -13,6 +13,15 @@ class Transaction {
   }
 }
 //global varaiable
+allTransList = [
+  { type: "Income", desc: "Description", amount: 10 },
+  { type: "Income", desc: "homies", amount: 10 },
+  { type: "Income", desc: "homies", amount: 10 },
+  { type: "Income", desc: "homies", amount: 10 },
+  { type: "Income", desc: "homies", amount: 10 },
+  { type: "Income", desc: "homies", amount: 10 },
+  { type: "Income", desc: "homies", amount: 10 },
+];
 
 //functions
 function createdataSummary() {
@@ -29,7 +38,14 @@ function createdataSummary() {
   //total div
   const totalDiv = document.createElement("div");
   totalDiv.style.backgroundColor = "#EBEBEB";
-  totalDiv.innerHTML = "<p class='sumDivP'>Total Transaction</p>";
+  const totaltitle = document.createElement("div");
+  totaltitle.innerText = "Total Transaction";
+  totaltitle.classList.add("sumDivP");
+  totalDiv.appendChild(totaltitle);
+  const totalAmount = document.createElement("div");
+  totalAmount.innerText = totalinc + totalexp;
+  totalAmount.classList.add("sumDivP");
+  totalDiv.appendChild(totalAmount);
   totalDiv.classList.add("summaryDiv");
   dataSumary.appendChild(totalDiv);
 
@@ -63,10 +79,28 @@ function createdataSummary() {
   expDiv.appendChild(expAmount);
   expDiv.classList.add("summaryDiv");
   dataSumary.appendChild(expDiv);
+}
+function recentransactionBlocks() {
+  allTransList.forEach((element) => {
+    const listTile = document.createElement("div");
+    listTile.classList.add("trnList");
+    recentransDiv.appendChild(listTile);
+    const typeDiv = document.createElement("div");
+    typeDiv.style.width = "30%";
+    typeDiv.innerText = element.type;
+    listTile.appendChild(typeDiv);
 
-  //lowerPart of dashboard
-  const recntTransDiv = document.createElement("div");
-  recntTransDiv;
+    const descDiv = document.createElement("div");
+    descDiv.style.width = "30%";
+    descDiv.innerText = element.desc;
+    listTile.appendChild(descDiv);
+
+    const amtDiv = document.createElement("div");
+    amtDiv.style.width = "30%";
+    amtDiv.innerText = element.amount;
+    listTile.appendChild(amtDiv);
+  });
 }
 
 createdataSummary();
+recentransactionBlocks();
