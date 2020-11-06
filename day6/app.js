@@ -5,25 +5,20 @@ const addtrans = document.querySelector(".add-transaction");
 const popWindow = document.querySelector(".pop-window");
 const closePop = document.querySelector(".close");
 const canvas = document.querySelector(".graphcanvas");
+const addItem = document.querySelector(".addbuton");
+const selectedType = document.querySelector(".type-select");
+const descValue = document.querySelector(".desc-input");
+const amtValue = document.querySelector(".amt-input");
 
 //eventListeners
 addtrans.addEventListener("click", addtransaction);
 closePop.addEventListener("click", closePopwindow);
+addItem.addEventListener("click", addItems);
 
 //global variables;
 let totalInc = 0;
 let totalExp = 0;
-
-//class
-class Transaction {
-  constructor(type, desc, amount) {
-    this.type = type;
-    this.desc - desc;
-    this.amount = amount;
-  }
-}
-//global varaiable
-allTransList = [
+let allTransList = [
   { type: "Income", desc: "Description", amount: 10 },
   { type: "Income", desc: "homies", amount: 10 },
   { type: "Income", desc: "homies", amount: 10 },
@@ -34,6 +29,15 @@ allTransList = [
   { type: "Income", desc: "test", amount: 10 },
   { type: "Expenses", desc: "my 2nd expense", amount: 80 },
 ];
+
+//class
+class Transaction {
+  constructor(type, desc, amount) {
+    this.type = type;
+    this.desc = desc;
+    this.amount = amount;
+  }
+}
 
 //functions
 function createdataSummary() {
@@ -133,6 +137,22 @@ function addtransaction() {
 function closePopwindow() {
   popWindow.style.display = "none";
 }
+
+function addItems() {
+  console.log(selectedType.value);
+  console.log(descValue.value);
+  console.log(amtValue.value);
+  const newaddedItem = new Transaction(
+    selectedType.value,
+    descValue.value,
+    amtValue.value
+  );
+  allTransList.push(newaddedItem);
+  console.log(allTransList);
+  descValue.value = "";
+  amtValue.value = "";
+}
+
 function drawGraph() {
   const ctx = canvas.getContext("2d");
   canvas.height = 400;
@@ -148,4 +168,3 @@ function drawGraph() {
 
 createdataSummary();
 recentransactionBlocks();
-drawGraph();
