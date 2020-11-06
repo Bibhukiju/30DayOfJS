@@ -1,0 +1,159 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  color: teal;
+}
+.subtitles {
+  display: flex;
+  justify-content: space-around;
+}
+.home {
+  display: flex;
+}
+.menu-bar {
+  float: left;
+  background-color: #ebebeb;
+  height: 100vh;
+  width: 25%;
+  padding-left: 2rem;
+  padding-top: 4rem;
+  color: teal;
+}
+.menu-bar li {
+  list-style: none;
+  font-size: 2rem;
+  line-height: 4rem;
+}
+.dashboard {
+  background-color: white;
+  width: 73%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100vh;
+}
+.dash-gap {
+  margin-left: 10px;
+}
+.data-summary {
+  display: flex;
+  justify-content: space-evenly;
+}
+.summaryDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 10px 20px;
+  width: 280px;
+  height: 280px;
+  border-radius: 35px;
+  padding: 50px;
+}
+.sumDivP {
+  font-size: 2rem;
+  text-align: center;
+}
+.lower-summary {
+  display: flex;
+  justify-content: space-between;
+}
+.rcntTrans {
+  width: 70%;
+  height: 450px;
+  margin-left: 10px;
+  border-radius: 40px;
+  padding: 30px;
+  background: #ebebeb;
+}
+.graph {
+  width: 40%;
+  height: 450px;
+  margin-left: 30px;
+  border-radius: 40px;
+  background: #ebebeb;
+}
+.trnList {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 10px 0;
+  padding: 20px 10px;
+  background: white;
+}
+.pop-window {
+  position: absolute;
+  display: none;
+  flex-wrap: wrap;
+  flex-direction: column;
+  top: 30%;
+  width: 50%;
+  height: 50%;
+  right: 50%;
+  left: 30%;
+  background: white;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+
+.data-input {
+  padding: 18px;
+  width: 70%;
+  margin: 20px;
+}
+.type-select {
+  display: block;
+}
+select {
+  --webkit-apperance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  border: none;
+}
+.select {
+  margin: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+select {
+  color: #ff6f47;
+  width: 10rem;
+  cursor: pointer;
+  padding: 1rem;
+}
+.select::after {
+  content: "\25BC";
+  position: absolute;
+  background: rgb(235, 235, 235);
+  top: 0;
+  right: 0;
+  padding: 1rem;
+  pointer-events: none;
+}
+.select:hover::after {
+  background: white;
+  color: #ff6f47;
+}
+.addbuton {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 18px 30px;
+  width: 150px;
+  color: white;
+  border-radius: 10px;
+  background-color: teal;
+}
+.close {
+  position: absolute;
+  top: 0%;
+  width: 50%;
+  height: 50%;
+  left:95%;
+  color: red;
+  font-size: 3rem;
+}

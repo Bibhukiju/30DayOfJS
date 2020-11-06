@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="Home">
+      <div class="menu-bar">
+        <div class="dashb">
+          <li>
+            <i class="fa fa-dashboard fa-2px"></i
+            ><span class="dash-gap">Dashboard</span>
+          </li>
+        </div>
+        <div class="add-transaction">
+          <li>
+            <i class="fa fa-plus fa-2px"></i
+            ><span class="dash-gap">Transactions</span>
+          </li>
+        </div>
+        <div class="allTransaction">
+          <li>
+            <i class="fa fa-cog fa-2px"></i
+            ><span class="dash-gap">ALL Transactions</span>
+          </li>
+        </div>
+      </div>
+      <div class="dashboard">
+        <div class="data-summary"></div>
+        <div class="subtitles">
+          <h2>Recent Transaction</h2>
+          <h2>Graph</h2>
+        </div>
+        <div class="lower-summary">
+          <div class="rcntTrans"></div>
+          <div class="graph"></div>
+        </div>
+      </div>
+    </div>
+    <div class="pop-window">
+      <div class="select">
+        <select name="type" class="type-select">
+          <option value="Income">Income</option>
+          <option value="Expneses">Expenses</option>
+        </select>
+      </div>
+      <input type="text" class="data-input" placeholder="Description" />
+      <input type="number" / class="data-input" placeholder="amount">
+      <div class="addbuton">
+        <i class="fa fa-plus"></i>
+        Add
+      </div>
+      <div class="close">X</div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
