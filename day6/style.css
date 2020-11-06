@@ -151,9 +151,26 @@ select {
 .close {
   position: absolute;
   top: 0%;
-  width: 50%;
-  height: 50%;
-  left:95%;
+  text-align: center;
+  left: 93%;
   color: red;
-  font-size: 3rem;
+  font-size: 2rem;
+  padding: 10px;
+  height: 50px;
+  width: 50px;
+
 }
+.dashb:hover,
+.add-transaction:hover,
+.allTransaction :hover {
+  cursor: pointer;
+  background-color: teal;
+  color: wheat;
+}
+.close:hover {
+  cursor: pointer;
+  background-color: red;
+  color: white;
+  border-radius: 100px;
+}
+
