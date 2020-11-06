@@ -19,8 +19,8 @@ allTransList = [
   { type: "Income", desc: "homies", amount: 10 },
   { type: "Income", desc: "homies", amount: 10 },
   { type: "Income", desc: "homies", amount: 10 },
-  { type: "Income", desc: "homies", amount: 10 },
-  { type: "Income", desc: "homies", amount: 10 },
+  { type: "Income", desc: "last4", amount: 10 },
+  { type: "Income", desc: "test", amount: 10 },
 ];
 
 //functions
@@ -81,25 +81,30 @@ function createdataSummary() {
   dataSumary.appendChild(expDiv);
 }
 function recentransactionBlocks() {
-  allTransList.forEach((element) => {
+  for (
+    let element = allTransList.length-1;
+    element > allTransList.length - 7;
+    element--
+  ) {
+    console.log(allTransList[element]);
     const listTile = document.createElement("div");
     listTile.classList.add("trnList");
     recentransDiv.appendChild(listTile);
     const typeDiv = document.createElement("div");
     typeDiv.style.width = "30%";
-    typeDiv.innerText = element.type;
+    typeDiv.innerText = allTransList[element].type;
     listTile.appendChild(typeDiv);
 
     const descDiv = document.createElement("div");
     descDiv.style.width = "30%";
-    descDiv.innerText = element.desc;
+    descDiv.innerText = allTransList[element].desc;
     listTile.appendChild(descDiv);
 
     const amtDiv = document.createElement("div");
     amtDiv.style.width = "30%";
-    amtDiv.innerText = element.amount;
+    amtDiv.innerText = allTransList[element].amount;
     listTile.appendChild(amtDiv);
-  });
+  }
 }
 
 createdataSummary();
