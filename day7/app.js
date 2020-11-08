@@ -19,15 +19,15 @@ addItem.addEventListener("click", addItems);
 let totalInc = 0;
 let totalExp = 0;
 let allTransList = [
-  { type: "Income", desc: "Description", amount: 10 },
-  { type: "Income", desc: "homies", amount: 10 },
-  { type: "Income", desc: "homies", amount: 10 },
-  { type: "Income", desc: "homies", amount: 10 },
-  { type: "Income", desc: "homies", amount: 10 },
-  { type: "Expenses", desc: "my  expense", amount: 80 },
-  { type: "Income", desc: "last4", amount: 10 },
-  { type: "Income", desc: "test", amount: 10 },
-  { type: "Expenses", desc: "my 2nd expense", amount: 80 },
+  //   { type: "Income", desc: "Description", amount: 10 },
+  //   { type: "Income", desc: "homies", amount: 10 },
+  //   { type: "Income", desc: "homies", amount: 10 },
+  //   { type: "Income", desc: "homies", amount: 10 },
+  //   { type: "Income", desc: "homies", amount: 10 },
+  //   { type: "Expenses", desc: "my  expense", amount: 80 },
+  //   { type: "Income", desc: "last4", amount: 10 },
+  //   { type: "Income", desc: "test", amount: 10 },
+  //   { type: "Expenses", desc: "my 2nd expense", amount: 80 },
 ];
 
 //class
@@ -108,7 +108,6 @@ function recentransactionBlocks() {
     element > allTransList.length - 7;
     element--
   ) {
-    console.log(allTransList[element]);
     const listTile = document.createElement("div");
     if (allTransList[element].type != "Income") {
       listTile.style.color = "red";
@@ -139,18 +138,25 @@ function closePopwindow() {
 }
 
 function addItems() {
-  console.log(selectedType.value);
-  console.log(descValue.value);
-  console.log(amtValue.value);
+  const alltrans = [];
+  localStorageData = localStorage.getItem("Transactions");
   const newaddedItem = new Transaction(
     selectedType.value,
     descValue.value,
     amtValue.value
   );
-  allTransList.push(newaddedItem);
-  console.log(allTransList);
-  descValue.value = "";
-  amtValue.value = "";
+  if (localStorageData) {
+    localStorageData = JSON.parse(localStorageData);
+    alltrans.push(localStorageData);
+    console.log(alltrans);
+    alltrans.push(newaddedItem);
+    console.log(alltrans);
+    localStorage.setItem("Transactions", JSON.stringify(alltrans));
+  } else {
+    alltrans.push(newaddedItem);
+    console.log(alltrans);
+    localStorage.setItem("Transactions", JSON.stringify(alltrans));
+  }
 }
 
 function drawGraph() {
@@ -165,6 +171,5 @@ function drawGraph() {
   let yIncr = totalInc > totalExp ? totalInc / 350 : totalExp / 350;
   console.log(yIncr);
 }
-
 createdataSummary();
 recentransactionBlocks();
