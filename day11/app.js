@@ -1,6 +1,11 @@
-const { default: validator } = require("validator");
-
+const getNotes = require("./note");
 const chalk = require("chalk");
-console.log(chalk.blue("I am blue"));
-console.log(chalk.red("I am red"));
-console.log(chalk.green("hello from green"));
+
+const command = process.argv[2];
+console.log(process.argv);
+if (command === "add") {
+  console.log("Addding node");
+} else if (command === "delete");
+{
+  console.log("deleting Note");
+}
