@@ -37,7 +37,12 @@ const addNotes = (title, body) => {
   }
 };
 
+const removeNotes = (title) => {
+  console.log("removing notes  " + title);
+};
+
 module.exports = {
   getnotes: getNotes,
   addNote: addNotes,
+  removeNotes: removeNotes,
 };
