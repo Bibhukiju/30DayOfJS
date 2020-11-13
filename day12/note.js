@@ -46,7 +46,7 @@ const removeNotes = (title) => {
     return note.title != title;
   });
   saveNotes(removedNotes);
-  if (notes.length > removedNotes) {
+  if (notes.length > removedNotes.length) {
     console.log(chalk.green.inverse("note removed"));
   } else {
     console.log(chalk.red.inverse("no notes found"));
@@ -63,7 +63,6 @@ const listNotes = () => {
   });
 };
 module.exports = {
-  getnotes: getNotes,
   addNote: addNotes,
   removeNotes: removeNotes,
   listNotes: listNotes,
