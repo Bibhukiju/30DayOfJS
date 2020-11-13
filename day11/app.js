@@ -33,7 +33,7 @@ yargs.command({
     t: {
       demandOption: true,
       type: "string",
-      describe: "mention the title to remove",
+      describe: "title of note",
     },
   },
   handler: () => {

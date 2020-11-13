@@ -52,9 +52,19 @@ const removeNotes = (title) => {
     console.log(chalk.red.inverse("no notes found"));
   }
 };
-
+const listNotes = () => {
+  const dataBuffers = fs.readFileSync("notes.json");
+  let notes = JSON.parse(dataBuffers.toString());
+  notes.forEach((note) => {
+    console.log("----------------------------");
+    console.log(chalk.green(note.title));
+    console.log(chalk.blue(note.body));
+    console.log("----------------------------");
+  });
+};
 module.exports = {
   getnotes: getNotes,
   addNote: addNotes,
   removeNotes: removeNotes,
+  listNotes: listNotes,
 };
