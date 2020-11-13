@@ -1,4 +1,5 @@
 //global variables
+const chalk = require("chalk");
 const fs = require("fs");
 
 //functions
@@ -44,8 +45,12 @@ const removeNotes = (title) => {
   let removedNotes = notes.filter((note) => {
     return note.title != title;
   });
-
-  fs.writeFileSync("notes.json", JSON.stringify(removedNotes));
+  saveNotes(removedNotes);
+  if (notes.length > removedNotes) {
+    console.log(chalk.green.inverse("note removed"));
+  } else {
+    console.log(chalk.red.inverse("no notes found"));
+  }
 };
 
 module.exports = {
