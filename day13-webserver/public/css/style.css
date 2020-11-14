@@ -8,3 +8,41 @@ h1 {
   color: royalblue;
   font-size: 4rem;
 }
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  border-bottom: 1px solid black;
+}
+.menus {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100vh;
+  font-size: 1.5rem;
+}
+.menus li {
+  list-style: none;
+}
+.pg-title {
+  font-size: 1.8rem;
+  margin-left: 20px;
+  color: grey;
+}
+.home-container {
+  margin-top: 20px;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.home-container .profile-img img {
+  border-radius: 50%;
+  width: 200px;
+}
+.home-container .i-about-des {
+  width: 50%;
+  font-size: 1.4rem;
+}
+.home-container .i-about-title{
+  font-size: 2rem;
+}
