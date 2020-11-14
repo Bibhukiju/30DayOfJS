@@ -24,10 +24,10 @@ getNotes = function () {
 const addNotes = (title, body) => {
   const notes = loadNotes();
 
-  const duplicateNotes = notes.filter((note) => {
+  const duplicateNotes = notes.find((note) => {
     return note.title === title;
   });
-  if (duplicateNotes.length === 0) {
+  if (!duplicateNotes) {
     notes.push({
       title: title,
       body: body,
