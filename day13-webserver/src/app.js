@@ -1,13 +1,28 @@
-const { request } = require("express");
 const express = require("express");
 const path = require("path");
 const app = express();
 
 app.use(express.static(path.join(__dirname, "../public")));
+app.set("view engine", "hbs");
 app.get("", (req, res) => {
-  res.send("<h1>health</h1>");
+  res.render("index", {
+    title: "Weather ",
+    name: "Bibhu",
+  });
 });
-console.log(path.join(__dirname, "../public"));
+
+app.get("/about", (req, res) => {
+  res.render("about", {
+    title: "about me",
+    name: "Kiju",
+    imgLink: "/img/bibhu.jpg",
+  });
+});
+app.get("/help", (req, res) => {
+  res.render("help", {
+    message: "My message for your help",
+  });
+});
 app.get("/weather", (req, res) => {
   res.send([
     {
