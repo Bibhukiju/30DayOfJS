@@ -14,45 +14,66 @@ MongoClient.connect(
       return console.log("unable to connect");
     }
     const db = client.db(databaseName);
-    // db.collection("users").insertMany(
-    //   [
-    //     {
-    //       name: "Rabin",
-    //       age: 15,
-    //     },
-    //     {
-    //       name: "Nabin",
-    //       age: 25,
-    //     },
-    //   ],
-    //   (err, result) => {
+
+    //fetching data from dB
+
+    // db.collection("users").findOne(
+    //   {
+    //     _id: mongoDB.ObjectID("5fb4ef2c1219760edc9131dc"),
+    //   },
+    //   (err, user) => {
     //     if (err) {
-    //       return console.log("errors");
+    //       return console.log(" you got error haha");
     //     }
-    //     console.log(result.ops);
+    //     console.log(user);
     //   }
     // );
-    db.collection("Tasks").insertMany(
-      [
-        {
-          description: "To build  api using node and express",
-          completed: false,
-        },
-        {
-          description: "To buy eggs",
-          completed: true,
-        },
-        {
-          description: "To crack node js",
-          completed: false,
-        },
-      ],
-      (err, result) => {
+    db.collection("users")
+      .find({ age: 25 })
+      .toArray((err, users) => {
         if (err) {
-          return console.log(" This is error LOL");
+          return console.log("err");
         }
-        console.log(result.ops);
+        console.log(users);
+      });
+    db.collection("tasks").findOne(
+      {
+        _id: mongoDB.ObjectID("5fb4f09f3bc3853758e74f5c"),
+      },
+      (error, task) => {
+        console.log(task);
       }
-    );
+    ),
+      db
+        .collection("Tasks")
+        .find({ completed: false })
+        .toArray((err, task) => {
+          if (err) {
+            return console.log(err);
+          }
+          console.log(task);
+        });
   }
 );
+// db.collection("Tasks").insertMany(
+//   [
+//     {
+//       description: "To build  api using node and express",
+//       completed: false,
+//     },
+//     {
+//       description: "To buy eggs",
+//       completed: true,
+//     },
+//     {
+//       description: "To crack node js",
+//       completed: false,
+//     },
+//   ],
+//   (err, result) => {
+//     if (err) {
+//       return console.log(" This is error LOL");
+//     }
+//     console.log(result.ops);
+//   }
+// );
