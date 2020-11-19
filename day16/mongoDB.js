@@ -95,18 +95,42 @@ MongoClient.connect(
     //   .catch((err) => {
     //     console.log(err);
     //   });
+
     //updateMany
+    // db.collection("Tasks")
+    //   .updateMany(
+    //     {
+    //       completed: false,
+    //     },
+    //     {
+    //       $set: {
+    //         completed: true,
+    //       },
+    //     }
+    //   )
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+
+    // deleteMany
+
+    // db.collection("users")
+    //   .deleteMany({ age: 25 })
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+
+    //deleteOne
     db.collection("Tasks")
-      .updateMany(
-        {
-          completed: false,
-        },
-        {
-          $set: {
-            completed: true,
-          },
-        }
-      )
+      .deleteOne({
+        description: "To buy eggs",
+      })
       .then((res) => {
         console.log(res);
       })
