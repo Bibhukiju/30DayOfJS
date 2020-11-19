@@ -28,52 +28,90 @@ MongoClient.connect(
     //     console.log(user);
     //   }
     // );
-    db.collection("users")
-      .find({ age: 25 })
-      .toArray((err, users) => {
-        if (err) {
-          return console.log("err");
+    //     db.collection("users")
+    //       .find({ age: 25 })
+    //       .toArray((err, users) => {
+    //         if (err) {
+    //           return console.log("err");
+    //         }
+    //         console.log(users);
+    //       });
+    //     db.collection("tasks").findOne(
+    //       {
+    //         _id: mongoDB.ObjectID("5fb4f09f3bc3853758e74f5c"),
+    //       },
+    //       (error, task) => {
+    //         console.log(task);
+    //       }
+    //     ),
+    //       db
+    //         .collection("Tasks")
+    //         .find({ completed: false })
+    //         .toArray((err, task) => {
+    //           if (err) {
+    //             return console.log(err);
+    //           }
+    //           console.log(task);
+    //         });
+    //   }
+    // );
+    // db.collection("Tasks").insertMany(
+    //   [
+    //     {
+    //       description: "To build  api using node and express",
+    //       completed: false,
+    //     },
+    //     {
+    //       description: "To buy eggs",
+    //       completed: true,
+    //     },
+    //     {
+    //       description: "To crack node js",
+    //       completed: false,
+    //     },
+    //   ],
+    //   (err, result) => {
+    //     if (err) {
+    //       return console.log(" This is error LOL");
+    //     }
+    //     console.log(result.ops);
+    //   }
+    // );
+    //update
+    // db.collection("users")
+    //   .updateOne(
+    //     {
+    //       _id: mongoDB.ObjectID("5fb4ef2c1219760edc9131dc"),
+    //     },
+    //     {
+    //       $inc: {
+    //         age: 5,
+    //       },
+    //     }
+    //   )
+    //   .then((result) => {
+    //     console.log(result);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    //updateMany
+    db.collection("Tasks")
+      .updateMany(
+        {
+          completed: false,
+        },
+        {
+          $set: {
+            completed: true,
+          },
         }
-        console.log(users);
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    db.collection("tasks").findOne(
-      {
-        _id: mongoDB.ObjectID("5fb4f09f3bc3853758e74f5c"),
-      },
-      (error, task) => {
-        console.log(task);
-      }
-    ),
-      db
-        .collection("Tasks")
-        .find({ completed: false })
-        .toArray((err, task) => {
-          if (err) {
-            return console.log(err);
-          }
-          console.log(task);
-        });
   }
 );
-// db.collection("Tasks").insertMany(
-//   [
-//     {
-//       description: "To build  api using node and express",
-//       completed: false,
-//     },
-//     {
-//       description: "To buy eggs",
-//       completed: true,
-//     },
-//     {
-//       description: "To crack node js",
-//       completed: false,
-//     },
-//   ],
-//   (err, result) => {
-//     if (err) {
-//       return console.log(" This is error LOL");
-//     }
-//     console.log(result.ops);
-//   }
-// );
