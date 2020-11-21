@@ -27,6 +27,7 @@ app.get("/users", async (req, res) => {
 });
 app.get("/users/:id", async (req, res) => {
   try {
+    const _id = req.params.id;
     const user = await User.findById(_id);
     if (!user) {
       return res.status(404).send;
@@ -62,10 +63,28 @@ app.get("/tasks/:id", async (req, res) => {
 app.post("/tasks", async (req, res) => {
   const task = new Task(req.body);
   try {
-    await user.save();
+    await task.save();
     res.status(201).send(task);
   } catch (error) {
     res.status(400).send();
+  }
+});
+
+app.patch("users/:id", async (req, res) => {
+  try {
+    const _id = req.params.id;
+    console.log(_id);
+    const user = await User.findByIdAndUpdate(_id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    if (!user) {
+      return res.status(400).send();
+    }
+    res.send(user);
+  } catch (error) {
+    console.log(" Why not!");
+    res.status(400).send(error);
   }
 });
 
