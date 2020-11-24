@@ -27,6 +27,7 @@ app.get("/users", async (req, res) => {
 });
 app.get("/users/:id", async (req, res) => {
   try {
+    console.log(req.body);
     const _id = req.params.id;
     const user = await User.findById(_id);
     if (!user) {
@@ -35,6 +36,22 @@ app.get("/users/:id", async (req, res) => {
     res.send(user);
   } catch (e) {
     res.status(500).send();
+  }
+});
+
+app.patch("/users/:id", async (req, res) => {
+  try {
+    console.log("Hello");
+    const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    if (!user) {
+      return res.status(404).send("Mango");
+    }
+    res.send(user);
+  } catch (error) {
+    res.status(500).send("test");
   }
 });
 
@@ -70,23 +87,6 @@ app.post("/tasks", async (req, res) => {
   }
 });
 
-app.patch("users/:id", async (req, res) => {
-  try {
-    const _id = req.params.id;
-    console.log(_id);
-    const user = await User.findByIdAndUpdate(_id, req.body, {
-      new: true,
-      runValidators: true,
-    });
-    if (!user) {
-      return res.status(400).send();
-    }
-    res.send(user);
-  } catch (error) {
-    console.log(" Why not!");
-    res.status(400).send(error);
-  }
-});
 app.listen(port, () => {
-  console.log("hello server " + port);
+  console.log("hello Test " + port);
 });
