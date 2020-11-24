@@ -39,6 +39,18 @@ app.get("/users/:id", async (req, res) => {
 });
 
 app.patch("/users/:id", async (req, res) => {
+  const updates = Object.keys(req.body);
+  const allowdedUpdates = ["name", "email", "password"];
+  const isvalidOperation = updates.every((update) =>
+    allowdedUpdates.includes(update)
+  );
+
+  if (!isvalidOperation) {
+    return res.status(400).send({
+      err: "invalid Updates",
+    });
+  }
+
   try {
     const user = await User.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -54,6 +66,18 @@ app.patch("/users/:id", async (req, res) => {
 });
 
 app.patch("/tasks/:id", async (req, res) => {
+  updates = Object.keys(req.body);
+  validUpdates = ["desc", "isCompleted"];
+  const isvalidOperation = updates.every((update) =>
+    validUpdates.includes(update)
+  );
+
+  if (!isvalidOperation) {
+    return res.status(400).send({
+      err: "invalid Updates",
+    });
+  }
+
   try {
     const task = await Task.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -97,6 +121,29 @@ app.post("/tasks", async (req, res) => {
     res.status(201).send(task);
   } catch (error) {
     res.status(400).send();
+  }
+});
+app.delete("/users/:id", async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id);
+    if (!user) {
+      return res.status(404).send();
+    }
+    res.send(user);
+  } catch (error) {
+    res.status(500).send();
+  }
+});
+
+app.delete("/tasks/:id", async (req, res) => {
+  try {
+    const task = await Task.findByIdAndDelete(req.params.id);
+    if (!task) {
+      return res.status(404).send();
+    }
+    res.send(task);
+  } catch (error) {
+    res.status(500).send();
   }
 });
 
