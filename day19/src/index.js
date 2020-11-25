@@ -1,13 +1,22 @@
-const express = require("express");
 require("./db/mongoose");
-const userRouter = require("./routers/user_routes");
+const express = require("express");
 const taskRouter = require("./routers/task_routes");
+const userRouter = require("./routers/user_routes");
+
 const app = express();
+const port = process.env.PORT || 3000;
+
+app.use((req, res, next) => {
+  if (req.method === "GET") {
+    res.send("GET request are disabled");
+  } else {
+    next();
+  }
+});
+
 app.use(express.json());
 app.use(userRouter);
 app.use(taskRouter);
-
-const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
   console.log("hello  " + port);

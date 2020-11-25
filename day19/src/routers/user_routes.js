@@ -6,9 +6,22 @@ router.post("/user", async (req, res) => {
   const user = new User(req.body);
   try {
     await user.save();
-    res.status(201).send(user);
+    const token = await user.generateTokenAuth();
+    res.status(201).send({ user, token });
   } catch (error) {
     res.status(400).send(e);
+  }
+});
+router.post("/users/login", async (req, res) => {
+  try {
+    const user = await User.findByCredentails(
+      req.body.email,
+      req.body.password
+    );
+    const token = await user.generateTokenAuth();
+    res.send({ user, token });
+  } catch (error) {
+    res.status(400).send("hello");
   }
 });
 
@@ -47,10 +60,8 @@ router.patch("/users/:id", async (req, res) => {
   }
 
   try {
-    const user = await User.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true,
-    });
+    const user = await User.findById(req.params.id);
+    updates.forEach((update) => (user[update] = req.body[update]));
     if (!user) {
       return res.status(404).send("Mango");
     }
